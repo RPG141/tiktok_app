@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:proyecto/Temas/app_temas.dart';
 import 'package:proyecto/presetacion/pantallas/discover_screen.dart';
+import 'package:proyecto/presetacion/providers/discover_provider.dart';
 
 void main() => runApp(const MyApp());
 
@@ -11,15 +13,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MultiProvider(
 
+      providers: [ChangeNotifierProvider(create: (_) => DiscoverProvider())], 
+      
       //tema para la app tiktok
-      title: 'Tiktok App',
-      debugShowCheckedModeBanner: false,
-      theme: AppTemas().getTheme(),
+      
+      child: MaterialApp(
+        title: 'Tiktok App',
+        debugShowCheckedModeBanner: false,
+        theme: AppTemas().getTheme(),
 
-      //llamamos a la clase discover
-      home: DiscoverScreen(),
+        //llamamos a la clase discover
+        
+        home: DiscoverScreen(),
+        
+      )
     );
   }
 }
